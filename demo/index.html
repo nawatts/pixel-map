@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <title>pixel-map demo</title>
+</head>
+<body>
+  <div>
+    <canvas id="output" height="256" width="256" />
+  </div>
+  <script type="text/javascript" src="pixel-map.js"></script>
+  <script type="text/javascript">
+    var canvas = document.getElementById('output');
+    var ctx = canvas.getContext('2d');
+
+    var data = new ImageData(256, 256);
+    var pixMap = new PixelMap(data);
+
+    for (var r = 0; r < 256; r++) {
+      for (var c = 0; c < 256; c++) {
+        var pix = pixMap.at(r, c);
+        pix.r = r;
+        pix.g = c;
+        pix.b = 0;
+        pix.a = 255;
+      }
+    }
+
+    ctx.putImageData(data, 0, 0);
+  </script>
+</body>
+</html>
